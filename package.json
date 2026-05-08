@@ -1,0 +1,14 @@
+{
+  "name": "scythe-reaper",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CDP-based Arkose Labs JS/API bundle sniper",
+  "type": "module",
+  "dependencies": {
+    "chrome-remote-interface": "^0.33.x",
+    "puppeteer-core": "^24.x"
+  },
+  "devDependencies": {
+    "@types/chrome-remote-interface": "^0.33.x"
+  }
+}

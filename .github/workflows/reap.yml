@@ -1,0 +1,48 @@
+name: reap
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+env:
+  DATA_REPO: react-RE/arkose-scythe-data
+  DATA_DIR: arkose-scythe-data
+
+jobs:
+  reap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: arkose-scythe
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.DATA_REPO }}
+          token: ${{ secrets.GH_PAT }}
+          path: ${{ env.DATA_DIR }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+        working-directory: arkose-scythe
+
+      - name: Reap
+        run: node src/scythe.mjs
+        working-directory: arkose-scythe
+        timeout-minutes: 8
+
+      - name: Commit & push
+        working-directory: ${{ env.DATA_DIR }}
+        run: |
+          git config user.name "scythe-reaper[bot]"
+          git config user.email "reaper@arkose-scythe.dev"
+          git add -A
+          git diff --cached --quiet || \
+            git commit -m "reap: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push

@@ -1,0 +1,18 @@
+{
+  "github": {
+    "signup": {
+      "emailInput": "#email",
+      "passwordInput": "#password",
+      "usernameInput": "#login",
+      "createAccount": ".js-octocaptcha-load-captcha",
+      "createAccountHidden": ".js-octocaptcha-form-submit"
+    }
+  },
+  "arkose": {
+    "captcha": {
+      "verifyScreen": "[class*=\"verify\"]",
+      "audioPuzzle": "button:has-text(\"Audio puzzle\")",
+      "playButton": "button.play-button"
+    }
+  }
+}
