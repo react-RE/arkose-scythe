@@ -39,11 +39,18 @@ function genUA() {
   return list[Math.floor(Math.random() * list.length)];
 }
 
+function headlessMode() {
+  const e = process.env.SCYTHE_HEADLESS;
+  if (e === 'true' || e === '1') return 'new';
+  if (!process.env.DISPLAY) return 'new';
+  return false;
+}
+
 export async function launch(retries = 3) {
   const chromePath = findChrome();
   for (let i = 0; i < retries; i++) {
     try {
-      const opts = { headless: false, args: FLAGS, defaultViewport: { width: 1920, height: 1080 } };
+      const opts = { headless: headlessMode(), args: FLAGS, defaultViewport: { width: 1920, height: 1080 } };
       if (chromePath) opts.executablePath = chromePath;
       return { browser: await puppeteer.launch(opts), ua: genUA() };
     } catch (err) {

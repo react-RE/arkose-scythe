@@ -8,6 +8,7 @@ on:
 env:
   DATA_REPO: react-RE/arkose-scythe-data
   DATA_DIR: arkose-scythe-data
+  SCYTHE_HEADLESS: 'true'
 
 jobs:
   reap:
@@ -32,10 +33,19 @@ jobs:
       - run: npm ci
         working-directory: arkose-scythe
 
+      - name: Install Chromium
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq chromium-browser
+
       - name: Reap
         run: node src/scythe.mjs
         working-directory: arkose-scythe
         timeout-minutes: 8
+
+      - name: Sanity check
+        run: node test/sanity.mjs
+        working-directory: arkose-scythe
 
       - name: Commit & push
         working-directory: ${{ env.DATA_DIR }}
