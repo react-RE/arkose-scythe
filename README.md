@@ -68,10 +68,6 @@ PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium node src/scythe.mjs
 node test/sanity.mjs
 ```
 
-### GitHub Actions
-
-Runs automatically every hour. Workflow: `.github/workflows/reap.yml`
-
 ### Architecture
 
 | Module | Role |
@@ -82,19 +78,9 @@ Runs automatically every hour. Workflow: `.github/workflows/reap.yml`
 | `granary.mjs` | Storage manager |
 | `scythe.mjs` | Main orchestrator |
 
-### Disclaimer
-
-This tool is for educational and research purposes only. Users are solely responsible for their use.
-
 ### License
 
 AGPL-3.0
-
----
-
-### Veri Kaynağı
-
-Toplanan verilerin güncel halini görmek için: [github.com/react-RE/arkose-scythe-data](https://github.com/react-RE/arkose-scythe-data)
 
 ---
 
@@ -126,7 +112,7 @@ bundles/2026-05-08T12-00-00Z/
 └── media/               # MP3 dosyaları
 ```
 
-Toplanan veriler otomatik olarak [arkose-scythe-data](https://github.com/react-RE/arkose-scythe-data) reposuna push edilir.
+Toplanan veriler otomatik olarak [arkose-scythe-data](https://github.com/react-RE/arkose-scythe-data) reposuna push edilir. Veriler her saat başı güncellenir.
 
 ### Bağımlılıklar
 
@@ -160,10 +146,6 @@ PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium node src/scythe.mjs
 node test/sanity.mjs
 ```
 
-### GitHub Actions
-
-Her saat başı otomatik çalışır. Workflow: `.github/workflows/reap.yml`
-
 ### Mimari
 
 | Modül | Görev |
@@ -174,10 +156,12 @@ Her saat başı otomatik çalışır. Workflow: `.github/workflows/reap.yml`
 | `granary.mjs` | Storage manager |
 | `scythe.mjs` | Ana orchestrator |
 
-### Sorumluluk Reddi
-
-Bu araç yalnızca eğitim ve araştırma amaçlıdır. Kullanımından doğacak her türlü sorumluluk kullanıcıya aittir.
-
 ### Lisans
 
 AGPL-3.0
+
+---
+
+### Veri Kaynağı
+
+Toplanan verilere güncel olarak ulaşmak için: [github.com/react-RE/arkose-scythe-data](https://github.com/react-RE/arkose-scythe-data)
